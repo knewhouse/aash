@@ -101,8 +101,6 @@ div.search_widget {
 }
 
 
-
-
 .header {
     background-color: #5B5B5B;
     color: #FFFFFF;
@@ -291,6 +289,7 @@ $.extend({
         var control1_use = new google.visualization.ControlWrapper({
             'controlType': 'StringFilter',
             'containerId': 'control1',
+            'page': 'disable' ,
             'options': {
                 'filterColumnLabel': 'AASH CERT #',
                 'matchType': 'any',
@@ -317,15 +316,17 @@ $.extend({
             'options': {
                 'cssClassNames': classes,
                 'allowHtml': 'true'
+
             }
         });
         var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard')).bind([control1_use], [table]).draw(data);
         $('div#dashboard').show();
     };
+
 </script>
 
 		<div id="fd_main"> 
-			<div id="full_search" class="search_widget" style="margin:0 auto;"> <h3>Verify AASH Authenticity</h3> <p> <label for="search_text">AASH CERT # </label> <input id="search_text" value="" onfocus="changeSearchButton1()" >  <input id="submit_button" type="submit" value="SEARCH" onclick="fd_refresh()" style="color:#000;"></p> <div id="num_search_bit"> </div> 
+			<div id="full_search" class="search_widget" style="margin:0 auto;"> <h3>Verify AASH Authenticity</h3> <p> <label for="search_text">AASH CERT # </label> <input id="search_text" value="" onfocus="changeSearchButton1()" > <input id="submit_button" type="submit" value="SEARCH" onclick="fd_refresh()" style="color:#000;"></p> <div id="num_search_bit"> </div> 
 			<div style='display:none;' id="name"> <p ><input id='range_num' value='' ></p> </div>  
 			</div> 
 			<div id="page_loader"> </div> 
@@ -372,7 +373,7 @@ $.extend({
             var allrecs = true;
         };
         if (allrecs) {
-            qs = qs + "fdall=true";
+//            qs = qs + "fdall=true";
         } else {
             qs = qs + "&fdop=" + encodeURIComponent(fdop) + "&fdnq=" + encodeURIComponent(fdnq) + "&fdtq=" + encodeURIComponent(fdtq);
         };
@@ -395,6 +396,7 @@ $.extend({
         {
           document.getElementById('submit_button').value = 'SEARCH';
         };
+
     });
 </script>
 	</div>
