@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<title> All American Sports House | Aunthication</title>
+		<title> All American Sports House | Authentication</title>
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 		<link href="styles/main.css" type="text/css" rel="stylesheet">
 		<!--[if lt IE 9]>
@@ -146,7 +146,7 @@ $.extend({
 			<div id="page_loader"> </div> 
 			<div id="dashboard" style="font-family:Arial, sans-serif;"> 
 				<div id="control1" class="control" style="display: none"></div> 
-				<div id="chart1" class="chart1"> <p style='font-size:1.3em;color:#772327;text-align:center !important;padding:60px 0 20px'>Searching... Thank you for waiting.</p> <p style='color:#3F3F3F;text-align:center !important;padding:20px 0'>Searches with a large number of results may take longer to load.</p></div> 
+				<div id="chart1" class="chart1"> <p style='font-size:1.3em;color:#772327;text-align:center !important;padding:60px 0 20px'>Searching... Thank you for waiting.</p></div> 
 				
 			</div> 
 		</div>  
@@ -180,7 +180,7 @@ $.extend({
         if (fdnq == "Enter a number") {
             fdnq = ''
         };
-        if (fdtq == "Ex: 99999-99999") {
+        if (fdtq == "Ex: 99999") {
             fdtq = ''
         };
         if (fdnq == '' && fdtq == '') {
@@ -203,9 +203,9 @@ $.extend({
             if ($(this).val() == '') $(this).val('Enter a number');
         });
         $('input#search_text').focus(function () {
-            if ($(this).val() == 'Ex: 99999-99999') $(this).val('');
+            if ($(this).val() == 'Ex: 99999') $(this).val('');
         }).blur(function () {
-            if ($(this).val() == '') $(this).val('Ex: 99999-99999');
+            if ($(this).val() == '') $(this).val('Ex: 99999');
         });
         {
           document.getElementById('submit_button').value = 'SEARCH';
