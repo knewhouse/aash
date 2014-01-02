@@ -115,6 +115,7 @@ header nav {
 	width: 78%;
 	height: auto;
 	padding: 30px;
+	text-align: justify;
 }
 
 #page_info ul {
