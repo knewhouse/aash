@@ -54,9 +54,8 @@ header nav {
 		display: inline;
 		margin-left: 15px;
 		}
-
-/* Banner */			
-#container{
+			
+#container {
 	background-color: #489BCF;
 	float: left;
 	margin-bottom: 15px;
@@ -64,13 +63,12 @@ header nav {
 	height: 960px;
 	}
 
-	#banner img {
+	#container img {
 		width: 100%;
 		}
 
 #fd_main {
 	background: #489BCF;
-    border: 4px solid #FFFFFF;
 	margin: 20px auto 15px;
 	width: 90%;
 	margin-top: 20px;
