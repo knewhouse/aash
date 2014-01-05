@@ -1,238 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<title> All American Sports House | Authentication</title>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-		<link href="styles/main.css" type="text/css" rel="stylesheet">
-		<!--[if lt IE 9]>
+<head>
+	<meta charset="utf-8">
+	<title>All American Sports House | Authentication</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<link href="styles/main.css" type="text/css" rel="stylesheet">
+	<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<script type='text/javascript' src='scripts/respond.min.js'></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script type="text/javascript"> google.load('visualization', '1.0', {packages:['controls']}); 
-        </script>
+	<![endif]-->
+	<script src="scripts/respond.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://www.google.com/jsapi"></script>
+	<script>google.load("visualization", "1.0", {packages:["controls"]});</script>
+	<script src="scripts/main.js"></script>
+</head>
+<body>
 
-	</head>
-	<body>
-		
-		<div id="wrapper">
-		
-			<header>
-				
-				<h1>All American Sports House Authentication</h1>
-				
-				<nav>
-					<ul>
-						<li><a href="http://www.allamericansportshouse.com/servlet/StoreFront" title="All American Sports House Online Store">AASH Online Store</a></li>
-					</ul>
-				</nav>
-				
+<div id="wrapper">
+	<header>
+		<h1>All American Sports House Authentication</h1>
+		<nav>
+			<ul>
+				<li>
+					<a href="http://www.allamericansportshouse.com/servlet/StoreFront" title="All American Sports House Online Store">AASH Online Store</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
 	<div id="container">
+		<div id="fd_main">
+			<div id="full_search" class="search_widget">
+				<h3>Verify AASH Authenticity</h3>
+				<form id="submit_cert">
+					<label for="search_text">AASH CERT #</label>
+					<input id="search_text" value="">
+					<input id="submit_button" type="submit" value="SEARCH">
+				</form>
+				<div id="name">
+					<p><input id="range_num" value=""></p>
+				</div>
+			</div>
 
-<script type="text/javascript" charset="utf-8">
-$.extend({
-    getUrlVars: function () {
-        var vars = [],
-            hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for (var i = 0; i < hashes.length; i++) {
-            hash = hashes[i].split('=');
-            vars.push(hash[0]);
-            vars[hash[0]] = hash[1];
-        }
-        return vars;
-    },
-    getUrlVar: function (name) {
-        return $.getUrlVars()[name];
-    }
-});
-</script>
-<script type="text/javascript">
-    anyquery = false;
-    fdnq = decodeURIComponent($.getUrlVar('fdnq'));
-    fdop = decodeURIComponent($.getUrlVar('fdop'));
-    fdtq = decodeURIComponent($.getUrlVar('fdtq'));
-    fdall = decodeURIComponent($.getUrlVar('fdall'));
-    if (fdall != 'undefined') {
-        fdall = true;
-    } else {
-        fdall = false;
-    }; if (fdtq != 'undefined' || fdnq != 'undefined' || fdall == true) {
-        anyquery = true;
-        google.setOnLoadCallback(drawVisualization());
-    } else {
-        fdtq = 'Ex: 99999';
-        fdnq = 'Enter a number';
-    };
+			<div id="page_loader"></div>
 
-    function drawVisualization() {
-        var search_url = 'https://spreadsheets.google.com/a/google.com/tq?key=0AhUJB3GWy1KvdDlDclZQQW9RSWV2THVPMU9vckd6UFE';
-        if (fdtq == 'undefined') {
-            fdtq = '';
-        };
-        if (fdnq == 'undefined') {
-            fdnq = '';
-        };
-        if (fdall) {
-            var querystring = "select *";
-        } else {
-            var querystring = "select A,B,C,D,E where ";
-            if (fdtq != '' && fdnq == '') {
-                querystring = querystring + "E like '%" + fdtq + "%'";
-            } else if (fdtq == '' && fdnq != '') {
-                querystring = querystring + "A" + fdop + fdnq;
-            } else {
-                querystring = querystring + "E like '%" + fdtq + "%'" + " and " + "A" + fdop + fdnq;
-            };
-        };
-        querystring = encodeURIComponent(querystring);
-        search_url = search_url + "&tq=" + querystring;
-        search_url = search_url.replace(/#&tq/, '&tq');
-        var query = new google.visualization.Query(search_url);
-        query.send(handleQueryResponse);
-    }
+			<div id="dashboard">
+				<div id="control1" class="control"></div>
+				<div id="chart1" class="chart1">
+					<p class="searching">Searching... Thank you for waiting.</p>
+				</div>
+			</div>
 
-    function handleQueryResponse(response) {
-        if (response.isError()) {
-            console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
-            return;
-        }
-        var data = response.getDataTable();
-        var control1_use = new google.visualization.ControlWrapper({
-            'controlType': 'StringFilter',
-            'containerId': 'control1',
-            'page': 'disable' ,
-            'options': {
-                'filterColumnLabel': 'AASH CERT #',
-                'matchType': 'any',
-                'ui': {
-                    'label': 'Type in new number',
-                    'cssClass': 'custom-stringfilter',
-                    'allowMultiple': false,
-                    'allowTyping': false
-                }
-            }
-        });
-        var classes = {
-            headerRow: 'header',
-            tableRow: 'row',
-            hoverTableRow: 'hoverRow',
-            oddTableRow: 'oddRow',
-            selectedTableRow: 'selectedRow',
-            tableCell: 'cell',
-            headderCell: 'headCell'
-        };
-        var table = new google.visualization.ChartWrapper({
-            'chartType': 'Table',
-            'containerId': 'chart1',
-            'options': {
-                'cssClassNames': classes,
-                'allowHtml': 'true'
-
-            }
-        });
-        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard')).bind([control1_use], [table]).draw(data);
-        $('div#dashboard').show();
-    };
-
-</script>
-
-		<div id="fd_main"> 
-			<div id="full_search" class="search_widget" style="margin:0 auto;"> <h3>Verify AASH Authenticity</h3> <p> <label for="search_text">AASH CERT # </label> <input id="search_text" value="" onfocus="changeSearchButton1()" > <input id="submit_button" type="submit" value="SEARCH" onclick="fd_refresh()" style="color:#000;"></p>
-			<div style='display:none;' id="name"> <p ><input id='range_num' value='' ></p> </div>  
-			</div> 
-			<div id="page_loader"> </div> 
-			<div id="dashboard" style="font-family:Arial, sans-serif;"> 
-				<div id="control1" class="control" style="display: none"></div> 
-				<div id="chart1" class="chart1"> <p style='font-size:1.3em;color:#772327;text-align:center !important;padding:60px 0 20px'>Searching... Thank you for waiting.</p></div> 
-				
-			</div> 
-            <div id="page_info">
-                <h3>All American Sports House</h3>
-                <ul>
-                <li>NO OPINIONS. All autographs having an All American Sports House serial numbered Hologram have been witnessed by a trusted source in the industry representing AASH.</li>
-                <li>We do not offer an "In The Opinion" Certificate of Authenticity.</li>
-                <li>Both the item and the certificate of authenticity will have the same serial-numbered tamperproof hologram.</li>
-                <li>All holograms are placed on the item by one of our representatives and all certificates are controlled by All American Sports House.</li>
-                <li>The database will give you the date, location, and specifics of how each item was signed.</li>
-                <li>OUR DATABASE WILL BE UPDATED EVERY WEEK FOR FAST AND EASY VERIFICATION.</li>
-                </ul>
-                <br />
-            
-
-            <p>All American Sports House autographed sports memorabilia is obtained from paid private athlete signings. To fill out our inventory, we wholesale from the largest, most well-known sports memorabilia companies that work directly with the athletes to give us the best items available. We specialize in unique inscriptions and items from the greatest athletes who ever played the game! If you can’t get your autograph in person, then do the next best thing: Buy your guaranteed authentic autographed item from All American Sports House!</p>
-            </div>
-		</div>  
-
-	<script type="text/javascript" charset="utf-8">
-    if (anyquery == false) {
-        $('div#dashboard').hide();
-    };
-    $('input#search_text').val(fdtq);
-    $('input#range_num').val(fdnq);
-
-    function changeSearchButton1() {
-        document.getElementById('submit_button').value = 'SEARCH';
-    };
-
-    function fd_refresh() {
-        var fdop = $('#sheet_op').val();
-        var fdnq = $('#range_num').val();
-        var fdtq = $('#search_text').val();
-        var sURL = window.location.href;
-        sURL = sURL.replace(/(fdtq=.*&|fdtq=.*$)/gi, '');
-        sURL = sURL.replace(/(fdnq=.*&|fdnq=.*$)/gi, '');
-        sURL = sURL.replace(/(fdop=.*&|fdop=.*$)/gi, '');
-        sURL = sURL.replace(/(fdall=.*&|fdall=.*$)/gi, '');
-        sURL = sURL.replace(/&$/, '');
-        var qs = '';
-        var found = sURL.search('\\?');
-        if (found == -1) {
-            qs = "?";
-        };
-        if (fdnq == "Enter a number") {
-            fdnq = ''
-        };
-        if (fdtq == "Ex: 99999") {
-            fdtq = ''
-        };
-        if (fdnq == '' && fdtq == '') {
-            var allrecs = true;
-        };
-        if (allrecs) {
-//            qs = qs + "fdall=true";
-        } else {
-            qs = qs + "&fdop=" + encodeURIComponent(fdop) + "&fdnq=" + encodeURIComponent(fdnq) + "&fdtq=" + encodeURIComponent(fdtq);
-        };
-        sURL = sURL + qs;
-        window.location.replace(sURL);
-    }
-</script>
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $('input#range_num').focus(function () {
-            if ($(this).val() == 'Enter a number') $(this).val('');
-        }).blur(function () {
-            if ($(this).val() == '') $(this).val('Enter a number');
-        });
-        $('input#search_text').focus(function () {
-            if ($(this).val() == 'Ex: 99999') $(this).val('');
-        }).blur(function () {
-            if ($(this).val() == '') $(this).val('Ex: 99999');
-        });
-        {
-          document.getElementById('submit_button').value = 'SEARCH';
-        };
-
-    });
-</script>
-	</div>
-				
-			</header>
-	
+			<div id="page_info">
+				<h3>All American Sports House</h3>
+				<ul>
+					<li>NO OPINIONS. All autographs having an All American Sports House serial numbered Hologram have been witnessed by a trusted source in the industry representing AASH.</li>
+					<li>We do not offer an "In The Opinion" Certificate of Authenticity.</li>
+					<li>Both the item and the certificate of authenticity will have the same serial-numbered tamperproof hologram.</li>
+					<li>All holograms are placed on the item by one of our representatives and all certificates are controlled by All American Sports House.</li>
+					<li>The database will give you the date, location, and specifics of how each item was signed.</li>
+					<li>OUR DATABASE WILL BE UPDATED EVERY WEEK FOR FAST AND EASY VERIFICATION.</li>
+				</ul>
+				<br>
+				<p>All American Sports House autographed sports memorabilia is obtained from paid private athlete signings. To fill out our inventory, we wholesale from the largest, most well-known sports memorabilia companies that work directly with the athletes to give us the best items available. We specialize in unique inscriptions and items from the greatest athletes who ever played the game! If you can’t get your autograph in person, then do the next best thing: Buy your guaranteed authentic autographed item from All American Sports House!</p>
+			</div>
 		</div>
+	</div>
+</div>
 
-	</body>
+</body>
 </html>
