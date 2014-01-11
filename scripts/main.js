@@ -1,7 +1,7 @@
-(function(){
-	// wrap everything in a closure to as to not leak any logic to the global scope
+(function() {
+// wrap everything in a closure to as to not leak any logic to the global scope
 
-	// jquery extension to get variables from a querystring
+// jquery extension to get variables from a querystring
 
 	$.extend({
 		getUrlVars: function () {
@@ -36,7 +36,7 @@
 	function drawVisualization () {
 		var search_url = 'https://spreadsheets.google.com/a/google.com/tq?key=0AhUJB3GWy1KvdDlDclZQQW9RSWV2THVPMU9vckd6UFE';
 
-		if (fdtq == 'undefined') {
+		if (fdtq === 'undefined') {
 			fdtq = '';
 		}
 
@@ -49,9 +49,9 @@
 		} else {
 			var querystring = "select A,B,C,D,E where ";
 
-			if (fdtq != '' && fdnq == '') {
+			if (fdtq != '' && fdnq === '') {
 				querystring = querystring + "E like '%" + fdtq + "%'";
-			} else if (fdtq == '' && fdnq != '') {
+			} else if (fdtq === '' && fdnq != '') {
 				querystring = querystring + "A" + fdop + fdnq;
 			} else {
 				querystring = querystring + "E like '%" + fdtq + "%'" + " and " + "A" + fdop + fdnq;
@@ -67,7 +67,7 @@
 
 	function handleQueryResponse (response) {
 		if (response.isError()) {
-			console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+			('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
 			return;
 		}
 		var data = response.getDataTable();
@@ -142,7 +142,7 @@
 			// qs = qs + "fdall=true";
 		} else {
 			qs = qs + "&fdop=" + encodeURIComponent(fdop) + "&fdnq=" + encodeURIComponent(fdnq) + "&fdtq=" + encodeURIComponent(fdtq);
-		}
+		}[]
 
 		sURL = sURL + qs;
 
